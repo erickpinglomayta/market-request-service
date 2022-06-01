@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RequestBootcoinDTO {
 	
-	private String bootcoinWalletId;
+	private String buyerBootcoinWalletId;
 	private Double amount;
 	private String paymentType;
 	private Long paymentNumber;

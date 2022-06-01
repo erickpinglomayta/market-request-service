@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class AcceptMarketRequestDTO {
 		
 	private String marketRequestId;
+	private String buyerBootcoinWalletId;
 	private String sellerBootcoinWalletId;
 	
 }

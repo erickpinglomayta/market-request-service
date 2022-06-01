@@ -54,7 +54,7 @@ public class MarketRequestServiceImpl implements MarketRequestService {
 	
 	public Mono<MarketRequestResponseDTO>  purchaseMarquetRequest(RequestBootcoinDTO requestBootcoinDTO){
 		return marketRequestRepository.save(new MarketRequestDocument(null,requestBootcoinDTO.getAmount(),"Pendiente",requestBootcoinDTO.getPaymentType(),
-				requestBootcoinDTO.getPaymentNumber(),new Date(),null,requestBootcoinDTO.getMarketId(),requestBootcoinDTO.getBootcoinWalletId())).flatMap( r -> {
+				requestBootcoinDTO.getPaymentNumber(),new Date(),null,requestBootcoinDTO.getMarketId(),requestBootcoinDTO.getBuyerBootcoinWalletId())).flatMap( r -> {
 					return Mono.just(new MarketRequestResponseDTO("0000","successful bootcoin request"));
 				});
 	
@@ -66,7 +66,8 @@ public class MarketRequestServiceImpl implements MarketRequestService {
 				
 			return updateMarkeRequestById(new MarketRequestDocument(null,null,"Aceptado",null,null,null,new Date(),null,null),
 					acceptMarketRequestDTO.getMarketRequestId()).flatMap( updatedMarket -> {						
-						sendMarketTransaction(new MarketTransactionDTO(updatedMarket.getMarketRequestId(),updatedMarket.getAmount(),updatedMarket.getBuyerBootcoinWalletId(),acceptMarketRequestDTO.getSellerBootcoinWalletId(),
+						sendMarketTransaction(new MarketTransactionDTO(updatedMarket.getMarketRequestId(),updatedMarket.getAmount(),
+								acceptMarketRequestDTO.getBuyerBootcoinWalletId(),acceptMarketRequestDTO.getSellerBootcoinWalletId(),
 								updatedMarket.getPaymentType(),updatedMarket.getPaymentNumber()));
 						return Mono.just(new MarketRequestResponseDTO("0000","successful accept request"));
 					});
