@@ -12,5 +12,7 @@ public class AcceptMarketRequestDTO {
 	private String marketRequestId;
 	private String buyerBootcoinWalletId;
 	private String sellerBootcoinWalletId;
+	private String sellerPaymentType;
+	private Long sellerPaymentNumber;	
 	
 }

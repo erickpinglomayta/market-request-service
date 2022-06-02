@@ -68,7 +68,7 @@ public class MarketRequestServiceImpl implements MarketRequestService {
 					acceptMarketRequestDTO.getMarketRequestId()).flatMap( updatedMarket -> {						
 						sendMarketTransaction(new MarketTransactionDTO(updatedMarket.getMarketRequestId(),updatedMarket.getAmount(),
 								acceptMarketRequestDTO.getBuyerBootcoinWalletId(),acceptMarketRequestDTO.getSellerBootcoinWalletId(),
-								updatedMarket.getPaymentType(),updatedMarket.getPaymentNumber()));
+								updatedMarket.getPaymentType(),updatedMarket.getPaymentNumber(),acceptMarketRequestDTO.getSellerPaymentType(),acceptMarketRequestDTO.getSellerPaymentNumber()));
 						return Mono.just(new MarketRequestResponseDTO("0000","successful accept request"));
 					});
 			}else {
